@@ -1,28 +1,52 @@
 # Daniel Cohen
 
-**AI Systems & Infrastructure Engineer · Systems Software · GenAI Automation**
+**Systems / AI Runtime Engineer · Bare-metal OS · GPU Compute · Rust**
 
-> I build systems from user workflow down to runtime and hardware.
+> I build systems from user intent down to runtime and hardware — and I try to make the claims inspectable.
 
-My work sits at the intersection of **AI implementation, infrastructure, systems software, automation, and low-level engineering**. I am strongest when a problem is broad, ambiguous, and crosses layers: requirements, architecture, implementation, debugging, validation, deployment, and technical communication.
+My strongest work is in **cross-layer systems engineering**: architecture, implementation, debugging, physical validation, performance instrumentation, rollback and technical communication.
 
-[LinkedIn](https://www.linkedin.com/in/danielforface) · [Aura](https://github.com/danielforface/aura-lang) · [AetherOS](https://github.com/danielforface/AetherOS-Showcase) · [Engineering Evidence Index](ENGINEERING_EVIDENCE.md)
+[LinkedIn](https://www.linkedin.com/in/danielforface) · [AetherOS](https://github.com/danielforface/AetherOS-Showcase) · [Engineering Evidence Index](ENGINEERING_EVIDENCE.md) · [Aura](https://github.com/danielforface/aura-lang)
 
 ---
 
-## Where I fit best
+## Current engineering anchor: AetherOS
 
-### AI Systems / Infrastructure / Solutions
+### [AetherOS](https://github.com/danielforface/AetherOS-Showcase) — bare-metal AI runtime / OS
 
-I build and integrate AI-enabled systems across application, infrastructure, automation, and operational layers. My background includes Linux/Windows administration, hardware and networking, full-stack systems, DevOps workflows, AI-assisted engineering, and end-to-end technical troubleshooting.
+A Rust `#![no_std]`, x86_64 bare-metal system for local LLM inference on physical hardware.
 
-Typical fit: **AI Infrastructure Engineer · AI Solutions Engineer · AI Implementation / Enablement Engineer · Forward Deployed Engineer**
+The current public evidence release documents:
 
-### Systems Software / Runtime / Developer Tools
+- physical USB boot into AetherOS;
+- GGUF model loading on the physical machine;
+- custom Intel Gen9-class compute work on PCI `8086:9b41`;
+- hybrid CPU / Intel iGPU inference;
+- a long ROUND18 optimization and failure-analysis lineage;
+- explicit physical promotion/rejection gates;
+- a causal GPU register-corruption experiment and repair;
+- a reviewed **7.0775 decode tok/s** steady operating point for the tested Llama 3.2 1B Instruct Q4_K_M configuration;
+- a later continuous RUN01 laptop recording reproducing approximately the same ~7.08 tok/s point.
 
-I also work close to the machine: Rust, x86_64, bare metal, GPU/CPU inference, compiler architecture, formal verification, native networking, and runtime/tooling design.
+The public repository is intentionally evidence-first rather than a claim that the complete private kernel source is open.
 
-Typical fit: **Systems Software Engineer · Rust Engineer · Runtime / Edge AI Engineer · Compiler / Developer Tools Engineer**
+**Start here:**  
+[AetherOS README](https://github.com/danielforface/AetherOS-Showcase) · [Reviewer Guide](https://github.com/danielforface/AetherOS-Showcase/blob/main/evidence/release-v1.1/REVIEWER_START_HERE.md) · [Claims & Limits](https://github.com/danielforface/AetherOS-Showcase/blob/main/evidence/release-v1.1/CLAIMS_AND_LIMITS.md)
+
+---
+
+## What I want to work on
+
+The strongest role fit for my current evidence is:
+
+- **Systems / AI Runtime Engineering**
+- **Rust / low-level systems engineering**
+- **Edge / local AI inference**
+- **GPU/CPU performance engineering**
+- **Runtime / compiler / developer-tools engineering**
+- **Forward-deployed or solutions work where deep technical debugging matters**
+
+I am particularly useful when the problem crosses layers and cannot be solved cleanly from one abstraction level.
 
 ---
 
@@ -34,98 +58,87 @@ A substantial Rust language-platform monorepo built around the idea that program
 
 Public engineering surface includes:
 
-- 22 Rust workspace members spanning lexer, parser, AST, semantic core, IR, verifier, runtimes, backends, package tooling, LSP, SDK and plugins
-- Z3-backed verification paths, contracts, invariants, structured counterexamples and proof-oriented diagnostics
-- C-oriented native backend and an evolving LLVM IR backend
-- Aura Sentinel desktop IDE and language-server integration
-- Android build/runtime tooling and release infrastructure
-- a documented seven-workflow CI validation matrix
+- lexer/parser/AST/semantic/IR layers;
+- Z3-backed verification paths;
+- contracts, invariants and structured counterexamples;
+- C-oriented native backend and evolving LLVM IR work;
+- LSP / IDE integration;
+- Android build/runtime tooling;
+- multi-workflow CI and explicit project-status reconciliation.
 
-**Status:** active, pre-stable language platform. Public claims are intentionally bounded by implementation and validation evidence.
+**Status:** active, pre-stable language platform.
 
-[Repository](https://github.com/danielforface/aura-lang) · [Project Status](https://github.com/danielforface/aura-lang/blob/main/PROJECT_STATUS.md) · [Website](https://aura.geniuses.team/)
-
-### [AetherOS](https://github.com/danielforface/AetherOS-Showcase) — bare-metal AI inference research system
-
-A Rust-first `#![no_std]` x86_64 AI operating system / inference research system built to explore what happens when the inference stack owns the path to silicon directly instead of sitting on a conventional host OS and user-mode GPU stack.
-
-Publicly documented and hardware-validated areas include:
-
-- direct Intel Gen9 RCS / GPGPU command submission
-- AVX2 multi-core inference paths
-- GGUF transformer execution and quantized Q4_K / Q6_K kernels
-- USB/NVMe, memory, paging, telemetry, synchronization and model-residency work
-- bit-exact GPU/CPU qualification methodology
-- physical-hardware benchmark lineage on Intel Core i3-10110U + UHD 620
-- peak verified clean 128-token end-to-end decode of approximately **3.411 tokens/s** in the public evidence set
-
-The complete kernel implementation is private; the public repository is deliberately an **architecture, proof, validation and performance showcase**.
-
-[Repository](https://github.com/danielforface/AetherOS-Showcase) · [Performance](https://github.com/danielforface/AetherOS-Showcase/blob/main/docs/08-performance.md) · [Proof Matrix](https://github.com/danielforface/AetherOS-Showcase/blob/main/docs/09-proof-matrix.md)
+[Repository](https://github.com/danielforface/aura-lang) · [Project Status](https://github.com/danielforface/aura-lang/blob/main/PROJECT_STATUS.md)
 
 ### [NexusP2P / XLINK](https://github.com/danielforface/XLINK) — native Rust remote-support engine
 
-A Windows-focused remote-support system implemented as a Rust workspace with separate core, network, display, and input layers.
+A Windows-focused remote-support system with:
 
-- QUIC transport
-- certificate fingerprint pinning
-- explicit multi-gate consent flow
-- DXGI Desktop Duplication
-- session-gated Win32 input injection
-- native desktop GUI, connection-file and QR workflows
-- production build and validation scripts
+- QUIC transport;
+- certificate fingerprint pinning;
+- explicit multi-gate consent;
+- DXGI Desktop Duplication;
+- session-gated Win32 input injection;
+- native desktop UI and connection-file / QR flows.
 
-### [Telegram Cloudifier](https://github.com/danielforface/TelegramDrive) — MTProto cloud-style file environment
+### [Telegram Cloudifier](https://github.com/danielforface/TelegramDrive) — MTProto file environment
 
-A Next.js / TypeScript application that turns Telegram into a cloud-style file-management environment.
-
-- direct MTProto integration
-- client-side authentication and session handling
-- chat/media browsing
-- virtual filesystem concepts over Telegram storage channels
-- upload/download management and cloud-style organization
+A Next.js / TypeScript system that explores a cloud-style file-management abstraction over Telegram / MTProto.
 
 ---
 
 ## Engineering approach
 
-- **Evidence before claims.** Implemented, tested, hardware-verified and production-promoted are different states.
-- **Architecture before surface polish.** I care about contracts, failure modes, data flow, observability and ownership boundaries.
-- **Reproducible validation.** Logs, CI gates, bit-exact checks, test matrices and rollback points are part of the system, not an afterthought.
-- **Cross-layer debugging.** I am comfortable moving from UI/application behavior through networking and runtimes down to OS/hardware behavior.
-- **AI as an engineering accelerator.** I use modern coding agents aggressively for implementation and exploration, while retaining responsibility for architecture, debugging strategy, validation, integration and final technical claims.
+- **Evidence before claims.** Implemented, tested, physically observed and production-promoted are different states.
+- **Mechanism before mythology.** A performance number matters less if the mechanism cannot be explained.
+- **Negative results stay visible.** A candidate can be exact and faster and still be rejected.
+- **Cross-layer debugging.** I am comfortable moving from application behavior through runtime, OS and hardware evidence.
+- **Reproducible validation.** Logs, hashes, exactness gates, rollback points and benchmark methodology are part of the engineering.
+- **AI as an engineering accelerator.** I use coding agents aggressively, while keeping architecture, debugging strategy, validation, integration and final claim boundaries as explicit responsibilities.
 
 ---
 
 ## Technical map
 
-**AI & automation**  
-LLM integration · agentic workflows · AI-assisted engineering · evaluation/validation workflows · automation
+**Systems / runtime**  
+Rust · `no_std` · x86_64 · bare metal · concurrency · memory / paging · device bring-up · Windows APIs
 
-**Systems & runtime**  
-Rust · C/C++ · x86_64 · bare metal · AVX2/FMA · GPU/CPU inference · Windows API · concurrency · DMA/PCIe concepts
+**AI runtime / performance**  
+GGUF · transformer inference · quantized kernels · AVX2/FMA · CPU/GPU routing · performance instrumentation · A/B admission gates
 
-**Compilers & formal methods**  
-lexer/parser/AST/IR · Z3/SMT · contracts/invariants · C backend · LLVM-oriented architecture · LSP/tooling
+**GPU / low level**  
+Intel integrated-GPU experimentation · command submission · residency · synchronization · emitted instruction analysis · register/fence debugging
 
-**Application & infrastructure**  
-Python · TypeScript/JavaScript · Node.js · React/Next.js · REST APIs · Linux · Windows · CI/CD · Docker · Kubernetes · networking
+**Compilers / formal methods**  
+lexer/parser/AST/IR · Z3/SMT · contracts/invariants · native backends · LSP/tooling
 
-**Hardware & operations**  
-laptop/desktop diagnostics · Android devices · component replacement · OS installation/recovery · troubleshooting · user-facing technical support
+**Application / infrastructure**  
+Python · TypeScript/JavaScript · Node.js · React/Next.js · networking · CI/CD · Linux · Windows
 
 ---
 
-## Professional context
+## AI-assisted development disclosure
 
-Alongside independent engineering R&D, my background includes hands-on systems/IT administration, computer hardware repair and troubleshooting, and programming instruction for gifted and technical learners. That combination is useful in roles where engineering depth must connect to real users, operational environments, or customer-facing implementation.
+I use modern AI coding agents heavily.
 
-For a fast technical review of the public evidence behind the projects above, see the **[Engineering Evidence Index](ENGINEERING_EVIDENCE.md)**.
+I do not treat generated code or project size as proof that a system works. The evidence I want reviewed is the architecture, source/binary provenance, physical behavior, debugging mechanism, validation method and the decisions to promote or reject changes.
+
+AetherOS Public Evidence Release v1.1 is the clearest current example.
+
+---
+
+## Fast technical review
+
+If you only have ten minutes:
+
+1. Open [AetherOS](https://github.com/danielforface/AetherOS-Showcase).
+2. Read the [Reviewer Guide](https://github.com/danielforface/AetherOS-Showcase/blob/main/evidence/release-v1.1/REVIEWER_START_HERE.md).
+3. Inspect one of the three bounded stories: **BY**, **DV**, or **HAR**.
+4. Use [ENGINEERING_EVIDENCE.md](ENGINEERING_EVIDENCE.md) for the wider project map.
 
 ---
 
 ## Contact
 
 - [LinkedIn](https://www.linkedin.com/in/danielforface)
-- [Aura website](https://aura.geniuses.team/)
 - [GitHub](https://github.com/danielforface)
